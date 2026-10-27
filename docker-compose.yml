@@ -1,0 +1,48 @@
+# Microservicio de alertas y notificaciones de Mejor Vejez. No tiene base de datos:
+# habla con el servicio core por la red interna de Dokploy. No necesita
+# dominio público: sus rutas internas (/api/interno/**) solo se usan entre
+# servicios, protegidas con la clave de servicio.
+services:
+  mejor-vejez-alertas:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    environment:
+      SERVER_PORT: 8081
+      # ── Comunicación entre microservicios (obligatorias) ─────────────────
+      CORE_URL: ${CORE_URL:-http://mejor-vejez-api:8080}
+      CLAVE_SERVICIO: ${CLAVE_SERVICIO:?falta CLAVE_SERVICIO}
+      # ── Correo (SMTP) ────────────────────────────────────────────────────
+      # Usuario y clave SMTP van SOLO en el panel de Dokploy, nunca acá.
+      MAIL_HOST: ${MAIL_HOST:-}
+      MAIL_PORT: ${MAIL_PORT:-587}
+      MAIL_USERNAME: ${MAIL_USERNAME:-}
+      MAIL_PASSWORD: ${MAIL_PASSWORD:-}
+      MAIL_SMTP_AUTH: ${MAIL_SMTP_AUTH:-true}
+      MAIL_STARTTLS: ${MAIL_STARTTLS:-true}
+      MAIL_REMITENTE: ${MAIL_REMITENTE:-}
+      MAIL_TIMEOUT_MS: ${MAIL_TIMEOUT_MS:-10000}
+      # URL pública del front: arma el enlace a la alerta en el correo.
+      APP_URL: ${APP_URL:-https://mejor-vejez-app.adndigital.cl}
+      JAVA_OPTS: ${JAVA_OPTS:--XX:MaxRAMPercentage=75}
+    expose:
+      - "8081"
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "http://localhost:8081/api/salud"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    networks:
+      - dokploy-network
+
+# Sólo la red de Dokploy: `default` apunta a ella para que Compose NO cree la
+# red `<proyecto>_default` (el servidor se queda sin rangos de IP si cada app
+# crea la suya).
+networks:
+  default:
+    name: dokploy-network
+    external: true
+  dokploy-network:
+    external: true
