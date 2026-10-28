@@ -13,6 +13,13 @@ services:
       # ── Comunicación entre microservicios (obligatorias) ─────────────────
       CORE_URL: ${CORE_URL:-http://mejor-vejez-api:8080}
       CLAVE_SERVICIO: ${CLAVE_SERVICIO:?falta CLAVE_SERVICIO}
+      PROCESOS_HABILITADOS: ${PROCESOS_HABILITADOS:-true}
+      # ── Detección de atrasos y alertas preventivas (America/Santiago) ───
+      ALERTAS_HORAS_RETROSPECTIVA: ${ALERTAS_HORAS_RETROSPECTIVA:-48}
+      ALERTAS_HORAS_CITA: ${ALERTAS_HORAS_CITA:-24}
+      ALERTAS_DIAS_REPOSICION: ${ALERTAS_DIAS_REPOSICION:-3}
+      ALERTAS_CRON_DETECCION: ${ALERTAS_CRON_DETECCION:-0 */5 * * * *}
+      ALERTAS_CRON_PREVENTIVAS: ${ALERTAS_CRON_PREVENTIVAS:-0 10 * * * *}
       # ── Correo (SMTP) ────────────────────────────────────────────────────
       # Usuario y clave SMTP van SOLO en el panel de Dokploy, nunca acá.
       MAIL_HOST: ${MAIL_HOST:-}
