@@ -68,6 +68,16 @@ public class EnviadorCorreo {
     }
 
     /**
+     * Envía un correo de texto plano con {@code asunto} y {@code cuerpo} ya
+     * redactados a {@code destino} (HU-01: cuenta nueva y recuperación de
+     * contraseña), para quien llama desde otro paquete y no necesita el
+     * detalle del error, solo si se pudo entregar.
+     */
+    public boolean enviarTextoPlano(String destino, String asunto, String cuerpo) {
+        return enviarMensaje(destino, asunto, cuerpo, null, null).exito();
+    }
+
+    /**
      * Envía el correo del reporte semanal con {@code pdf} adjunto ({@code
      * application/pdf}, con el nombre {@code nombreArchivo}) a {@code
      * destino}. El arreglo de bytes solo vive en memoria.
