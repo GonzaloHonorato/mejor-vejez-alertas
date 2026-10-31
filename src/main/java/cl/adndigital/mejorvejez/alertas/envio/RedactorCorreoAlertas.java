@@ -18,8 +18,8 @@ import cl.adndigital.mejorvejez.alertas.deteccion.CodigosProcesos;
 public class RedactorCorreoAlertas {
 
     private static final Map<String, String> ETIQUETAS_TIPO = Map.of(
-            CodigosProcesos.TIPO_ATRASO_TAREA, "Tarea sin confirmar",
-            CodigosProcesos.TIPO_CITA_PROXIMA, "Cita médica próxima",
+            CodigosProcesos.TIPO_ATRASO_TAREA, "Tarea atrasada",
+            CodigosProcesos.TIPO_CITA_PROXIMA, "Cita próxima",
             CodigosProcesos.TIPO_REPOSICION_MEDICAMENTO, "Reposición de medicamento");
 
     private final String urlApp;
@@ -32,10 +32,10 @@ public class RedactorCorreoAlertas {
     /** Mensaje de correo de {@code alerta} para {@code nombreDestinatario} en {@code destino}. */
     MensajeCorreo redactar(DatosAlertaCorreo alerta, String nombreDestinatario, String destino) {
         String etiqueta = ETIQUETAS_TIPO.get(alerta.tipoAlerta());
-        String asunto = "Mejor Vejez · " + etiqueta;
+        String asunto = "Cuida+ · " + etiqueta;
         String cuerpo = "Hola " + nombreDestinatario + ",\n\n" + alerta.mensaje()
                 + "\n\nRevisa la alerta en: " + urlApp + "/alertas/" + alerta.idAlerta() + "?grupo="
-                + alerta.idGrupo() + "\n\nMejor Vejez";
+                + alerta.idGrupo() + "\n\nCuida+";
         return new MensajeCorreo(destino, nombreDestinatario, asunto, cuerpo);
     }
 }

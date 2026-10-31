@@ -93,7 +93,7 @@ class ControladorCorreosTest {
         MimeMessage[] mensajes = greenMail.getReceivedMessages();
         assertThat(mensajes).hasSize(1);
         MimeMessage mensaje = mensajes[0];
-        assertThat(mensaje.getSubject()).isEqualTo("Mejor Vejez · Tu cuenta está lista");
+        assertThat(mensaje.getSubject()).isEqualTo("Cuida+ · Tu cuenta está lista");
         assertThat(GreenMailUtil.getAddressList(mensaje.getAllRecipients())).contains("ana.cuenta@correo.cl");
         String cuerpoRecibido = (String) mensaje.getContent();
         assertThat(cuerpoRecibido).contains("Ana Pérez", "ana.cuenta@correo.cl", "Clave2026x",
@@ -114,7 +114,7 @@ class ControladorCorreosTest {
         MimeMessage[] mensajes = greenMail.getReceivedMessages();
         assertThat(mensajes).hasSize(1);
         MimeMessage mensaje = mensajes[0];
-        assertThat(mensaje.getSubject()).isEqualTo("Mejor Vejez · Restablece tu contraseña");
+        assertThat(mensaje.getSubject()).isEqualTo("Cuida+ · Restablece tu contraseña");
         assertThat(GreenMailUtil.getAddressList(mensaje.getAllRecipients())).contains("ana.recupera@correo.cl");
         String cuerpoRecibido = (String) mensaje.getContent();
         assertThat(cuerpoRecibido).contains("Ana Pérez", "http://localhost:4200/restablecer-clave?codigo=abc123",

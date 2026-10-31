@@ -32,9 +32,9 @@ class EnviadorCorreoTest {
     private static final Session SESION = Session.getInstance(new Properties());
 
     private final MensajeCorreo mensaje = new MensajeCorreo("ana@correo.cl", "Ana Pérez",
-            "Mejor Vejez · Tarea sin confirmar",
+            "Cuida+ · Tarea atrasada",
             "Hola Ana Pérez,\n\n«Tomar colchicina» de José, atención médica.\n\nRevisa la alerta en: "
-                    + "http://localhost:4200/alertas/1?grupo=1\n\nMejor Vejez");
+                    + "http://localhost:4200/alertas/1?grupo=1\n\nCuida+");
 
     @SuppressWarnings("unchecked")
     private final ObjectProvider<JavaMailSender> proveedor = mock(ObjectProvider.class);

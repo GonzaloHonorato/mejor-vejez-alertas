@@ -11,25 +11,25 @@ import org.springframework.stereotype.Component;
 @Component
 public class RedactorCorreosCuenta {
 
-    static final String ASUNTO_CUENTA_NUEVA = "Mejor Vejez · Tu cuenta está lista";
-    static final String ASUNTO_RECUPERAR_CLAVE = "Mejor Vejez · Restablece tu contraseña";
+    static final String ASUNTO_CUENTA_NUEVA = "Cuida+ · Tu cuenta está lista";
+    static final String ASUNTO_RECUPERAR_CLAVE = "Cuida+ · Restablece tu contraseña";
 
     /** Correo de cuenta nueva: saludo, correo de ingreso, contraseña temporal, enlace y recomendación de cambio. */
     CorreoRedactado redactarCuentaNueva(String nombre, String email, String claveTemporal, String urlIngreso) {
         String cuerpo = "Hola " + nombre + ",\n\n"
-                + "Tu cuenta de Mejor Vejez ya está lista. Ingresa con tu correo (" + email + ") y esta "
+                + "Tu cuenta de Cuida+ ya está lista. Ingresa con tu correo (" + email + ") y esta "
                 + "contraseña temporal:\n\n" + claveTemporal + "\n\n"
                 + "Ingresa aquí: " + urlIngreso + "\n\n"
-                + "Te recomendamos cambiarla en \"Mi perfil\" apenas ingreses.\n\nMejor Vejez";
+                + "Te recomendamos cambiarla en \"Mi perfil\" apenas ingreses.\n\nCuida+";
         return new CorreoRedactado(ASUNTO_CUENTA_NUEVA, cuerpo);
     }
 
     /** Correo de recuperación de contraseña: saludo, enlace, vigencia y aviso si no se pidió. */
     CorreoRedactado redactarRecuperarClave(String nombre, String enlace) {
         String cuerpo = "Hola " + nombre + ",\n\n"
-                + "Recibimos una solicitud para restablecer tu contraseña de Mejor Vejez. Usa este enlace:\n\n"
+                + "Recibimos una solicitud para restablecer tu contraseña de Cuida+. Usa este enlace:\n\n"
                 + enlace + "\n\n"
-                + "Este enlace vence en 1 hora.\n\nSi no lo pediste, ignora este correo.\n\nMejor Vejez";
+                + "Este enlace vence en 1 hora.\n\nSi no lo pediste, ignora este correo.\n\nCuida+";
         return new CorreoRedactado(ASUNTO_RECUPERAR_CLAVE, cuerpo);
     }
 }

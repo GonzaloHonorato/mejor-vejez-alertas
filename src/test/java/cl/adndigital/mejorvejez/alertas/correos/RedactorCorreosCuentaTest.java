@@ -17,11 +17,11 @@ class RedactorCorreosCuentaTest {
         CorreoRedactado correo = redactor.redactarCuentaNueva("Ana Pérez", "ana@correo.cl", "Clave2026x",
                 "http://localhost:4200/ingreso");
 
-        assertThat(correo.asunto()).isEqualTo("Mejor Vejez · Tu cuenta está lista");
+        assertThat(correo.asunto()).isEqualTo("Cuida+ · Tu cuenta está lista");
         assertThat(correo.cuerpo()).isEqualTo("Hola Ana Pérez,\n\n"
-                + "Tu cuenta de Mejor Vejez ya está lista. Ingresa con tu correo (ana@correo.cl) y esta "
+                + "Tu cuenta de Cuida+ ya está lista. Ingresa con tu correo (ana@correo.cl) y esta "
                 + "contraseña temporal:\n\nClave2026x\n\nIngresa aquí: http://localhost:4200/ingreso\n\n"
-                + "Te recomendamos cambiarla en \"Mi perfil\" apenas ingreses.\n\nMejor Vejez");
+                + "Te recomendamos cambiarla en \"Mi perfil\" apenas ingreses.\n\nCuida+");
     }
 
     @Test
@@ -29,10 +29,10 @@ class RedactorCorreosCuentaTest {
         CorreoRedactado correo = redactor.redactarRecuperarClave("Ana Pérez",
                 "http://localhost:4200/restablecer-clave?codigo=abc123");
 
-        assertThat(correo.asunto()).isEqualTo("Mejor Vejez · Restablece tu contraseña");
+        assertThat(correo.asunto()).isEqualTo("Cuida+ · Restablece tu contraseña");
         assertThat(correo.cuerpo()).isEqualTo("Hola Ana Pérez,\n\n"
-                + "Recibimos una solicitud para restablecer tu contraseña de Mejor Vejez. Usa este enlace:\n\n"
+                + "Recibimos una solicitud para restablecer tu contraseña de Cuida+. Usa este enlace:\n\n"
                 + "http://localhost:4200/restablecer-clave?codigo=abc123\n\n"
-                + "Este enlace vence en 1 hora.\n\nSi no lo pediste, ignora este correo.\n\nMejor Vejez");
+                + "Este enlace vence en 1 hora.\n\nSi no lo pediste, ignora este correo.\n\nCuida+");
     }
 }

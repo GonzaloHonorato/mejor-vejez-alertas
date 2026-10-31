@@ -25,10 +25,10 @@ class RedactorCorreoAlertasTest {
 
         assertThat(mensaje.destino()).isEqualTo("ana@correo.cl");
         assertThat(mensaje.nombreDestinatario()).isEqualTo("Ana Pérez");
-        assertThat(mensaje.asunto()).isEqualTo("Mejor Vejez · Tarea sin confirmar");
+        assertThat(mensaje.asunto()).isEqualTo("Cuida+ · Tarea atrasada");
         assertThat(mensaje.cuerpo()).isEqualTo("Hola Ana Pérez,\n\n«Tomar colchicina» de José Pérez, programada "
                 + "para el 26-10-2026 a las 09:00, sigue sin confirmación final.\n\nRevisa la alerta en: "
-                + "http://localhost:4200/alertas/999?grupo=10\n\nMejor Vejez");
+                + "http://localhost:4200/alertas/999?grupo=10\n\nCuida+");
     }
 
     @Test
